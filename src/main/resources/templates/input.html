@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+
+<script src="../jquery/jquery-3.2.1.min.js"></script>
+<!-- <script src="../js/validate.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<script src="../js/input.js"></script>
+<title></title>
+</head>
+<body>
+<br/>
+<br/>
+	<div class="container">
+		<div class="panel panel-success">
+			<div class="panel-heading">Tambah Customer</div>
+			<div class="panel-body">
+				<form name="insertCustomer" id="insertCustomer" method="post">
+					<div class="form-group">
+						<label for="idCustomer">Id Customer</label>
+						<input type="text" class="form-control" name="idCustomer" id="idCustomer" required="required" />
+					</div>
+					<div class="form-group">
+						<label for="namaCustomer">Nama Customer</label>
+						<input type="text" class="form-control" name="namaCustomer" id="namaCustomer" required="required" />
+					</div>
+					<div class="form-group">
+						<label for="tempatLahir">Tempat Lahir</label>
+						<input type="text" class="form-control" name="tempatLahir" id="tempatLahir" required="required" />
+					</div>
+					<div class="form-group">
+						<label for="tanggalLahir">Tanggal Lahir</label>
+						<input type="text" class="form-control" name="tanggalLahir" placeholder="yyyy-mm-dd" id="tanggalLahir" required="required" />
+					</div>
+					<div class="form-group">
+						<label for="pekerjaan">Pekerjaan</label>
+						<input type="text" class="form-control" name="pekerjaan" id="pekerjaan" required="required" />
+					</div>
+					<div class="form-group">
+						<label for="alamat">Alamat</label>
+						<input type="text" class="form-control" name="alamat" id="alamat" required="required" />
+					</div>
+					<div>
+						<button type="button" id="btn-save" class="btn btn-primary">Simpan</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
