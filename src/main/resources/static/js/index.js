@@ -27,7 +27,7 @@ $(document).ready(function() {
 	//Aksi saat klik tombol update
 	$('#tabel-data tbody').on('click', '#btn-update', function() {
 		var data = table.row($(this).parents('tr')).data();
-		
+		console.log(data);
 		localStorage.clear();
 		
 		//Menyimpan data untuk update
