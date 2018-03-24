@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+
+<script th:src="@{/jquery/jquery-3.2.1.min.js}"></script> 
+<script th:src="@{/dataTables/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/dataTables/js/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/dataTables/js/dataTables.responsive.min.js}"></script>
+<script th:src="@{/dataTables/js/responsive.bootstrap4.min.js}"></script>
+<script th:src="@{/js/motor.js}"></script>
+<title></title>
+</head>
+<body>
+<br/>
+<br/>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">Input Data Motor</div>
+			<div class="card-body">
+				<form name="insertMotor" id="insertMotor" method="post">
+					<div class="form-group">
+						<label for="idMotor">Id Motor</label>
+						<input type="text" class="form-control" name="idMotor" id="idMotor" required="required" />
+					</div>
+					<div class="form-group">
+						<label for="bebek">Unit Bebek</label>
+						<input type="text" class="form-control" name="bebek" id="bebek" required="required" />
+					</div>
+					<div class="form-group">
+						<label for="matic">Unit Matic</label>
+						<input type="text" class="form-control" name="matic" id="matic" required="required" />
+					</div>
+					<div class="form-group">
+						<label for="sport">Unit Sport</label>
+						<input type="text" class="form-control" name="sport" id="sport" required="required" />
+					</div>
+					<div>
+						<button type="button" id="btn-save" class="btn btn-primary">Simpan</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
