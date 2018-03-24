@@ -40,7 +40,7 @@ function inputCustomer() {
 	var settings = {
 		"async" : true,
 		"crossDomain" : true,
-		"url" : "http://localhost:8082/rest/customer/insert",
+		"url" : "http://localhost:20000/rest/customer/insert",
 		"method" : "POST",
 		"headers" : {
 			"content-type" : "application/json",

@@ -10,6 +10,7 @@ public class CustomerController {
 	public String index()
 	{
 		return "index";
+		
 	}
 	
 	@RequestMapping(value = "/input")
@@ -29,5 +30,13 @@ public class CustomerController {
 	{
 		return "welcome";
 	}
+	
+	@RequestMapping(value = "/motor")
+	public String motor()
+	{
+		return "motor";
+	}
+	
+	
 
 }
