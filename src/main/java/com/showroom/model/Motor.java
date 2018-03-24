@@ -10,12 +10,6 @@ import javax.persistence.Table;
 @Table(name = "motor")
 public class Motor implements java.io.Serializable {
 
-	//@Id = Untuk primary key
-	//@Column = Pendefinisian nama kolom
-	//@Temporal = Untuk tipe data yang berupa tanggal
-	//unique = Untuk keunikan data = true / false
-	//nullable = Untuk data yang kosong, jika false tidak boleh kosong jika true boleh kosong
-	//length = Panjang karakter di database
 	
 	@Id
 	@Column(name = "idMotor", unique = true, nullable = false, length = 25)

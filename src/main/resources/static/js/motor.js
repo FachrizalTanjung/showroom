@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	//Menampilkan data untuk di update
+	//Menampilkan data untuk di update motor
 	$('#idMotor').val(localStorage.getItem("idMotor"));
 	$('#bebek').val(localStorage.getItem("bebek"));
 	$('#matic').val(localStorage.getItem("matic"));
