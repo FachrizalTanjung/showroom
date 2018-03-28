@@ -12,7 +12,7 @@ public class Motor implements java.io.Serializable {
 
 	
 	@Id
-	@Column(name = "idMotor", unique = true, nullable = false, length = 25)
+	@Column(name = "idmotor", unique = true, nullable = false, length = 25)
 	private String idMotor;
 	
 	@Column(name = "bebek", nullable = false, length = 25)
@@ -55,6 +55,4 @@ public class Motor implements java.io.Serializable {
 	public void setSport(String sport) {
 		this.sport = sport;
 	}
-	
-	
 }

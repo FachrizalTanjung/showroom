@@ -31,12 +31,12 @@ public class CustomerController {
 		return "welcome";
 	}
 	
-	/*@RequestMapping(value = "/motor")
+	@RequestMapping(value = "/motor")
 	public String motor()
 	{
 		return "motor";
 	}
-	*/
+	
 	
 
 }
