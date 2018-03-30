@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class CustomerApplication extends SpringBootServletInitializer {
+public class ShowroomApplication extends SpringBootServletInitializer {
 	
 	//Untuk menjalankan Spring Boot
 	public static void main(String[] args) {
-		SpringApplication.run(CustomerApplication.class, args);
+		SpringApplication.run(ShowroomApplication.class, args);
 	}
 }

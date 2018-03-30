@@ -1,6 +1,7 @@
 package com.showroom.rest;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,30 +14,52 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.showroom.dao.MotorDao;
+import com.showroom.dao.HargaDTO;
+import com.showroom.dao.TbMotorDao;
 import com.showroom.dto.MotorDTO;
-import com.showroom.model.Motor;
+import com.showroom.model.TbHarga;
+import com.showroom.model.TbMotor;
 
 @RestController
 @RequestMapping("/rest/motor")
 public class RestServicesMotor {
 
 	@Autowired
-	private MotorDao motorDao;
+	private TbMotorDao tbMotorDao;
 
 	@GetMapping("/all")
 	public ResponseEntity getAllMotor() {
 
 		List<MotorDTO> motorList = new ArrayList<MotorDTO>();
 
-		for (Motor motor : motorDao.findAll()) {
+		for (TbMotor tbMotor : tbMotorDao.findAll()) {
 			MotorDTO mtr = new MotorDTO();
 
 			// Set data di tabel ke dto
-			mtr.setIdMotor(motor.getIdMotor());
-			mtr.setBebek(motor.getBebek());
-			mtr.setMatic(motor.getMatic());
-			mtr.setSport(motor.getSport());
+			mtr.setIdMotor(tbMotor.getIdMotor());
+			mtr.setJenisMotor(tbMotor.getJenisMotor());
+			mtr.setMerekMotor(tbMotor.getMerekMotor());
+			mtr.setTipeMotor(tbMotor.getTipeMotor());
+			mtr.setUrlGambar(tbMotor.getUrlGambar());
+			mtr.setDeskripsiMotor(tbMotor.getDeskripsiMotor());
+			mtr.setTransmisiMotor(tbMotor.getTransmisiMotor());
+			mtr.setCc(tbMotor.getCc());
+			mtr.setTahun(tbMotor.getTahun());
+			mtr.setWarnaMotor(tbMotor.getWarnaMotor());
+			mtr.setCreatedBy(tbMotor.getCreatedBy());
+			mtr.setCreatedAt(tbMotor.getCreatedAt());
+			mtr.setUpdatedBy(tbMotor.getUpdatedBy());
+			mtr.setUpdatedAt(tbMotor.getUpdatedAt());
+
+			HargaDTO hargaDTO = new HargaDTO();
+			hargaDTO.setIdMotor(tbMotor.getTbHarga().getIdMotor());
+			hargaDTO.setHargaOtr(tbMotor.getTbHarga().getHargaOtr());
+			hargaDTO.setDiskon(tbMotor.getTbHarga().getDiskon());
+			hargaDTO.setStok(tbMotor.getTbHarga().getStok());
+			hargaDTO.setHargaNetcash(tbMotor.getTbHarga().getHargaNetcash());
+			hargaDTO.setSimulasiKredit(tbMotor.getTbHarga().getSimulasiKredit());
+
+			mtr.setHargaDTO(hargaDTO);
 
 			motorList.add(mtr);
 		}
@@ -46,16 +69,36 @@ public class RestServicesMotor {
 
 	// Get Motor Menggunakan Id Motor
 	@GetMapping("/{idMotor}")
-	public ResponseEntity getMotorById(@PathVariable("idMotor") String idMotor) {
+	public ResponseEntity getMotorById(@PathVariable("idMotor") Long idMotor) {
 		MotorDTO mtr = new MotorDTO();
 
-		Motor motor = motorDao.findOne(idMotor);
+		TbMotor tbMotor = tbMotorDao.findOne(idMotor);
 
-		if (motor != null) {
-			mtr.setIdMotor(motor.getIdMotor());
-			mtr.setBebek(motor.getBebek());
-			mtr.setMatic(motor.getMatic());
-			mtr.setSport(motor.getSport());
+		if (tbMotor != null) {
+			mtr.setIdMotor(tbMotor.getIdMotor());
+			mtr.setJenisMotor(tbMotor.getJenisMotor());
+			mtr.setMerekMotor(tbMotor.getMerekMotor());
+			mtr.setTipeMotor(tbMotor.getTipeMotor());
+			mtr.setUrlGambar(tbMotor.getUrlGambar());
+			mtr.setDeskripsiMotor(tbMotor.getDeskripsiMotor());
+			mtr.setTransmisiMotor(tbMotor.getTransmisiMotor());
+			mtr.setCc(tbMotor.getCc());
+			mtr.setTahun(tbMotor.getTahun());
+			mtr.setWarnaMotor(tbMotor.getWarnaMotor());
+			mtr.setCreatedBy(tbMotor.getCreatedBy());
+			mtr.setCreatedAt(tbMotor.getCreatedAt());
+			mtr.setUpdatedBy(tbMotor.getUpdatedBy());
+			mtr.setUpdatedAt(tbMotor.getUpdatedAt());
+
+			HargaDTO hargaDTO = new HargaDTO();
+			hargaDTO.setIdMotor(tbMotor.getTbHarga().getIdMotor());
+			hargaDTO.setHargaOtr(tbMotor.getTbHarga().getHargaOtr());
+			hargaDTO.setDiskon(tbMotor.getTbHarga().getDiskon());
+			hargaDTO.setStok(tbMotor.getTbHarga().getStok());
+			hargaDTO.setHargaNetcash(tbMotor.getTbHarga().getHargaNetcash());
+			hargaDTO.setSimulasiKredit(tbMotor.getTbHarga().getSimulasiKredit());
+
+			mtr.setHargaDTO(hargaDTO);
 		} else
 			return new ResponseEntity("Not Found", HttpStatus.NOT_FOUND);
 
@@ -67,26 +110,61 @@ public class RestServicesMotor {
 	public ResponseEntity insertOrUpdateMotor(@RequestBody MotorDTO data) {
 		if (data == null)
 			return new ResponseEntity("Failed", HttpStatus.GONE);
-		Motor motor = motorDao.findOne(data.getIdMotor());
+		TbMotor tbMotor = tbMotorDao.findOne(data.getIdMotor());
 
-		if (motor == null) {
+		HargaDTO hargaDTO = new HargaDTO();
+
+		if (tbMotor == null) {
 			// Untuk insert
-			Motor mtrInsert = new Motor();
-			mtrInsert.setIdMotor(data.getIdMotor());
-			mtrInsert.setBebek(data.getBebek());
-			mtrInsert.setBebek(data.getBebek());
-			mtrInsert.setMatic(data.getMatic());
-			mtrInsert.setSport(data.getSport());
+			TbMotor tbm = new TbMotor();
+			tbm.setJenisMotor(data.getJenisMotor());
+			tbm.setMerekMotor(data.getMerekMotor());
+			tbm.setTipeMotor(data.getTipeMotor());
+			tbm.setUrlGambar(data.getUrlGambar());
+			tbm.setDeskripsiMotor(data.getDeskripsiMotor());
+			tbm.setTransmisiMotor(data.getTransmisiMotor());
+			tbm.setCc(data.getCc());
+			tbm.setTahun(data.getTahun());
+			tbm.setWarnaMotor(data.getWarnaMotor());
+			tbm.setCreatedBy("USER");
+			tbm.setCreatedAt(new Date());
 
-			motorDao.save(mtrInsert);
+			TbHarga tbHarga = new TbHarga();
+
+			tbHarga.setHargaOtr(hargaDTO.getHargaOtr());
+			tbHarga.setDiskon(hargaDTO.getDiskon());
+			tbHarga.setStok(hargaDTO.getStok());
+			tbHarga.setHargaNetcash(hargaDTO.getHargaNetcash());
+			tbHarga.setSimulasiKredit(hargaDTO.getSimulasiKredit());
+
+			tbm.setTbHarga(tbHarga);
+
+			tbMotorDao.save(tbm);
 		} else {
 			// Untuk update
-			motor.setIdMotor(data.getIdMotor());
-			motor.setBebek(data.getBebek());
-			motor.setMatic(data.getMatic());
-			motor.setSport(data.getSport());
+			tbMotor.setJenisMotor(data.getJenisMotor());
+			tbMotor.setMerekMotor(data.getMerekMotor());
+			tbMotor.setTipeMotor(data.getTipeMotor());
+			tbMotor.setUrlGambar(data.getUrlGambar());
+			tbMotor.setDeskripsiMotor(data.getDeskripsiMotor());
+			tbMotor.setTransmisiMotor(data.getTransmisiMotor());
+			tbMotor.setCc(data.getCc());
+			tbMotor.setTahun(data.getTahun());
+			tbMotor.setWarnaMotor(data.getWarnaMotor());
+			tbMotor.setUpdatedBy("USER");
+			tbMotor.setUpdatedAt(new Date());
 
-			motorDao.save(motor);
+			TbHarga tbHarga = new TbHarga();
+
+			tbHarga.setHargaOtr(hargaDTO.getHargaOtr());
+			tbHarga.setDiskon(hargaDTO.getDiskon());
+			tbHarga.setStok(hargaDTO.getStok());
+			tbHarga.setHargaNetcash(hargaDTO.getHargaNetcash());
+			tbHarga.setSimulasiKredit(hargaDTO.getSimulasiKredit());
+
+			tbMotor.setTbHarga(tbHarga);
+
+			tbMotorDao.save(tbMotor);
 		}
 
 		return new ResponseEntity("Success", HttpStatus.OK);
@@ -94,11 +172,11 @@ public class RestServicesMotor {
 
 	// Untuk delete motor
 	@PostMapping("/delete")
-	public ResponseEntity deleteMotor(@RequestBody String idMotor) {
-		Motor motor = motorDao.findOne(idMotor);
+	public ResponseEntity deleteMotor(@RequestBody Long idMotor) {
+		TbMotor tbMotor = tbMotorDao.findOne(idMotor);
 
-		if (motor != null) {
-			motorDao.delete(motor);
+		if (tbMotor != null) {
+			tbMotorDao.delete(idMotor);
 		} else
 			return new ResponseEntity(HttpStatus.GONE);
 

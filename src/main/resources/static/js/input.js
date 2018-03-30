@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	
 	//Menampilkan data untuk di update
-	$('#idCustomer').val(localStorage.getItem("idCustomer"));
 	$('#namaCustomer').val(localStorage.getItem("namaCustomer"));
 	$('#tempatLahir').val(localStorage.getItem("tempatLahir"));
 	$('#tanggalLahir').val(localStorage.getItem("tanggalLahir"));
@@ -29,7 +28,6 @@ $(document).ready(function() {
 function inputCustomer() {
 
 	var data = {
-		"idCustomer" : $("#idCustomer").val(),
 		"namaCustomer" : $("#namaCustomer").val(),
 		"tempatLahir" : $("#tempatLahir").val(),
 		"tanggalLahir" : $("#tanggalLahir").val(),
