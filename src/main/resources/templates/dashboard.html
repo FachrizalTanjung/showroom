@@ -1,24 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" />
-    <link rel="stylesheet" th:href="@{/dataTables/css/dataTables.bootstrap4.min.css}" />
-    <link rel="stylesheet" th:href="@{/dataTables/css/responsive.bootstrap4.min.css}" />
-
-    <script th:src="@{/jquery/jquery-3.2.1.min.js}"></script>
-    <script th:src="@{/dataTables/js/jquery.dataTables.min.js}"></script>
-    <script th:src="@{/dataTables/js/dataTables.bootstrap4.min.js}"></script>
-    <script th:src="@{/dataTables/js/dataTables.responsive.min.js}"></script>
-    <script th:src="@{/dataTables/js/responsive.bootstrap4.min.js}"></script>
-    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/index.js}"></script>
+    <div th:replace="fragments/header :: header-css" />
     <title>Showroom</title>
 </head>
 
 <body>
+    <div th:replace="fragments/header :: header" />
     <div class="container pt-4">
         <div class="row">
             <div class="col-md-3">
@@ -30,8 +18,7 @@
                         aria-controls="credit">Kredit Motor</a>
                     <a class="list-group-item list-group-item-action" id="list-aboutus-list" data-toggle="list" href="#list-aboutus" role="tab"
                         aria-controls="aboutus">Hubungi Kami</a>
-                    <a class="list-group-item list-group-item-action" id="list-aboutus-list" data-toggle="list" href="#list-faq" role="tab"
-                        aria-controls="aboutus">FAQ</a>
+                    <a class="list-group-item list-group-item-action" id="list-aboutus-list" data-toggle="list" href="#list-faq" role="tab" aria-controls="aboutus">FAQ</a>
                 </div>
             </div>
             <div class="col-md-9">
@@ -168,12 +155,18 @@
                                                 <h5 class="card-title">Customer Careline</h5>
                                                 <p class="card-text">Hubungi Kami 021-799 0077 | Fax 021 797 4648</p>
                                                 <br/>
-                                                <p class="card-text"><b>Office</b></p>
-                                                <p class="card-text">Jl. Raya H. Bosih Selang Tengah No.65, Wanasari, Cibitung, Bekasi, Jawa Barat 17520</p>
-                                                <p class="card-text"><b>Customer Line</b></p>
+                                                <p class="card-text">
+                                                    <b>Office</b>
+                                                </p>
+                                                <p class="card-text">Jl. Raya H. Bosih Selang Tengah No.65, Wanasari, Cibitung, Bekasi, Jawa Barat
+                                                    17520
+                                                </p>
+                                                <p class="card-text">
+                                                    <b>Customer Line</b>
+                                                </p>
                                                 <p class="card-text">(Senin - Jumat | 08.30 - 17.30 WIB)</p>
-                                                <a href="https://www.google.com/maps/place/Jl.+Raya+H.+Bosih+Selang+Tengah+No.65,+Wanasari,+Cibitung,+Bekasi,+Jawa+Barat+17520/@-2.44565,117.8888,4z/data=!4m5!3m4!1s0x2e698f77d75b964f:0x91796f57be946099!8m2!3d-6.249226!4d107.087134" 
-                                                class="btn btn-primary">Lihat Disini</a>
+                                                <a href="https://www.google.com/maps/place/Jl.+Raya+H.+Bosih+Selang+Tengah+No.65,+Wanasari,+Cibitung,+Bekasi,+Jawa+Barat+17520/@-2.44565,117.8888,4z/data=!4m5!3m4!1s0x2e698f77d75b964f:0x91796f57be946099!8m2!3d-6.249226!4d107.087134"
+                                                    class="btn btn-primary">Lihat Disini</a>
                                             </div>
                                         </div>
                                     </div>
@@ -207,4 +200,5 @@
         </div>
     </footer> -->
 </body>
+
 </html>

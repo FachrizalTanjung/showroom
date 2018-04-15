@@ -37,6 +37,11 @@ public class CustomerController {
 		return "motor";
 	}
 	
+	@RequestMapping(value = "/inputPesan")
+	public String inputPesan()
+	{
+		return "inputPesan";
+	}
 	
 
 }
