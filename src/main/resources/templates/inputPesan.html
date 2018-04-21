@@ -3,7 +3,6 @@
 <head>
 	<div th:replace="fragments/header :: header-css" />
 	<title>Pesan Unit</title>
-
 </head>
 
 <body>
@@ -15,13 +14,13 @@
 				Booking Unit
 			</div>
 			<div class="card-body">
-				<form class="needs-validation" th:novalidate="novalidate">
+				<form class="needs-validation" th:novalidate="novalidate" action="/insertPesan" method="POST">
 
 					<div class="form-group">
 						<label for="idpesan">Tiket Pesan</label>
 						<input type="text" class="form-control" id="idpesan" placeholder="Tiket Pesan" th:required="required" />
 						<div class="invalid-feedback">
-							Harus diisi
+							Tidak boleh kosong
 						</div>
 					</div>
 
@@ -29,7 +28,7 @@
 						<label for="nama">Nama</label>
 						<input type="text" class="form-control" id="nama" placeholder="Nama" th:required="required" />
 						<div class="invalid-feedback">
-							Harus diisi
+							Tidak boleh kosong
 						</div>
 					</div>
 
@@ -37,7 +36,7 @@
 						<label for="nomortelepon">Nomor Telepon</label>
 						<input type="text" class="form-control" id="nomortelepon" placeholder="Nomor Telepon" th:required="required" />
 						<div class="invalid-feedback">
-							Harus diisi
+							Tidak boleh kosong
 						</div>
 					</div>
 
@@ -45,7 +44,7 @@
 						<label for="alamat">Alamat Lengkap</label>
 						<input type="text" class="form-control" id="alamat" placeholder="Alamat" th:required="required" />
 						<div class="invalid-feedback">
-							Harus diisi
+							Tidak boleh kosong
 						</div>
 					</div>
 
@@ -53,7 +52,7 @@
 						<label for="isipesan">Isi Pesan</label>
 						<input type="text" class="form-control" id="isipesan" placeholder="Isi Pesan" th:required="required" />
 						<div class="invalid-feedback">
-							Harus diisi
+							Tidak boleh kosong
 						</div>
 					</div>
 					<button class="btn btn-primary" type="submit">Simpan</button>
@@ -62,27 +61,10 @@
 		</div>
 	</div>
 
+	<script th:src="@{/js/inputPesan.js}"></script>
 
-	<script type="text/javascript">
-		// Example starter JavaScript for disabling form submissions if there are invalid fields
-		(function () {
-			'use strict';
-			window.addEventListener('load', function () {
-				// Fetch all the forms we want to apply custom Bootstrap validation styles to
-				var forms = document.getElementsByClassName('needs-validation');
-				// Loop over them and prevent submission
-				var validation = Array.prototype.filter.call(forms, function (form) {
-					form.addEventListener('submit', function (event) {
-						if (form.checkValidity() === false) {
-							event.preventDefault();
-							event.stopPropagation();
-						}
-						form.classList.add('was-validated');
-					}, false);
-				});
-			}, false);
-		})();
-	</script>
+	<div th:replace="fragments/footer :: footer" />
+
 </body>
 
 </html>

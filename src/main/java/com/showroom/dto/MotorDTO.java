@@ -2,8 +2,6 @@ package com.showroom.dto;
 
 import java.util.Date;
 
-import com.showroom.dao.HargaDTO;
-
 public class MotorDTO {
 
 	private Long idMotor;

@@ -21,95 +21,87 @@ import com.showroom.model.TbCustomer;
 @RestController
 @RequestMapping("/rest/customer")
 public class CustomerRestServices {
-	
-	//@RequestBody = request berupa string
-	
+
+	// @RequestBody = request berupa string
+
 	@Autowired
 	private TbCustomerDao tbCustomerDao;
-	
-	//Get Semua Data Customer
+
+	// Get Semua Data Customer
 	@GetMapping("/all")
-    public ResponseEntity getAllCustomer()
-	{
-		//Membuat list kosong
+	public ResponseEntity getAllCustomer() {
+		// Membuat list kosong
 		List<CustomerDTO> customerList = new ArrayList<CustomerDTO>();
-		
-		//Looping data di tabel customer
-        for(TbCustomer tbCustomer : tbCustomerDao.findAll())
-        {
-        	CustomerDTO cst = new CustomerDTO();
-        	
-        	//Set data di tabel ke dto
-        	cst.setIdCustomer(tbCustomer.getIdCustomer());
-        	cst.setNamaCustomer(tbCustomer.getNamaCustomer());
-        	cst.setTempatLahir(tbCustomer.getTempatLahir());
-        	cst.setTanggalLahir(tbCustomer.getTanggalLahir());
-        	cst.setPekerjaan(tbCustomer.getPekerjaan());
-        	cst.setAlamat(tbCustomer.getAlamat());
-        	cst.setCreatedBy(tbCustomer.getCreatedBy());
-        	cst.setCreatedAt(tbCustomer.getCreatedAt());
-        	cst.setUpdatedBy(tbCustomer.getUpdatedBy());
-        	cst.setUpdatedAt(tbCustomer.getUpdatedAt());
-        	
-        	//Menampung hasil looping data ke dalam list
-        	customerList.add(cst);
-        }
-		
-		return new ResponseEntity(customerList, HttpStatus.OK);
-    }
-	
-	//Get Customer Menggunakan Id Customer
-	@GetMapping("/{idCustomer}")
-    public ResponseEntity getCustomerById(@PathVariable("idCustomer") Long idCustomer)
-	{
-		CustomerDTO cst = new CustomerDTO();
-		
-		TbCustomer tbCustomer = tbCustomerDao.findOne(idCustomer);
-		
-		if(tbCustomer != null)
-		{
+
+		// Looping data di tabel customer
+		for (TbCustomer tbCustomer : tbCustomerDao.findAll()) {
+			CustomerDTO cst = new CustomerDTO();
+
+			// Set data di tabel ke dto
 			cst.setIdCustomer(tbCustomer.getIdCustomer());
-        	cst.setNamaCustomer(tbCustomer.getNamaCustomer());
-        	cst.setTempatLahir(tbCustomer.getTempatLahir());
-        	cst.setTanggalLahir(tbCustomer.getTanggalLahir());
-        	cst.setPekerjaan(tbCustomer.getPekerjaan());
-        	cst.setAlamat(tbCustomer.getAlamat());
-        	cst.setCreatedBy(tbCustomer.getCreatedBy());
-        	cst.setCreatedAt(tbCustomer.getCreatedAt());
-        	cst.setUpdatedBy(tbCustomer.getUpdatedBy());
-        	cst.setUpdatedAt(tbCustomer.getUpdatedAt());
+			cst.setNamaCustomer(tbCustomer.getNamaCustomer());
+			cst.setTempatLahir(tbCustomer.getTempatLahir());
+			cst.setTanggalLahir(tbCustomer.getTanggalLahir());
+			cst.setPekerjaan(tbCustomer.getPekerjaan());
+			cst.setAlamat(tbCustomer.getAlamat());
+			cst.setCreatedBy(tbCustomer.getCreatedBy());
+			cst.setCreatedAt(tbCustomer.getCreatedAt());
+			cst.setUpdatedBy(tbCustomer.getUpdatedBy());
+			cst.setUpdatedAt(tbCustomer.getUpdatedAt());
+
+			// Menampung hasil looping data ke dalam list
+			customerList.add(cst);
 		}
-		else
-			return new ResponseEntity("Not Found", HttpStatus.NOT_FOUND);
-		
-		return new ResponseEntity(cst, HttpStatus.OK);
-    }
-	
-	//Untuk Insert atau update customer
-	@PostMapping("/insert")
-    public ResponseEntity insertOrUpdateCustomer(@RequestBody CustomerDTO data)
-	{
-		if(data == null)
-			return new ResponseEntity("Failed",HttpStatus.GONE);;
-		
-		TbCustomer tbCustomer = tbCustomerDao.findOne(data.getIdCustomer());
-		
-		if(tbCustomer == null)
-		{
-			//Untuk insert
-			TbCustomer cst = new TbCustomer();
-        	cst.setNamaCustomer(data.getNamaCustomer());
-        	cst.setTempatLahir(data.getTempatLahir());
-        	cst.setTanggalLahir(data.getTanggalLahir());
-        	cst.setPekerjaan(data.getPekerjaan());
-        	cst.setAlamat(data.getAlamat());
-        	cst.setCreatedBy("USER");
-        	cst.setCreatedAt(new Date());
-			
-			tbCustomerDao.save(cst);
+
+		return new ResponseEntity(customerList, HttpStatus.OK);
+	}
+
+	// Get Customer Menggunakan Id Customer
+	@GetMapping("/{idCustomer}")
+	public ResponseEntity getCustomerById(@PathVariable("idCustomer") Long idCustomer) {
+		CustomerDTO cst = new CustomerDTO();
+
+		TbCustomer tbCustomer = tbCustomerDao.findOne(idCustomer);
+
+		if (tbCustomer != null) {
+			cst.setIdCustomer(tbCustomer.getIdCustomer());
+			cst.setNamaCustomer(tbCustomer.getNamaCustomer());
+			cst.setTempatLahir(tbCustomer.getTempatLahir());
+			cst.setTanggalLahir(tbCustomer.getTanggalLahir());
+			cst.setPekerjaan(tbCustomer.getPekerjaan());
+			cst.setAlamat(tbCustomer.getAlamat());
+			cst.setCreatedBy(tbCustomer.getCreatedBy());
+			cst.setCreatedAt(tbCustomer.getCreatedAt());
+			cst.setUpdatedBy(tbCustomer.getUpdatedBy());
+			cst.setUpdatedAt(tbCustomer.getUpdatedAt());
 		} else
-		{
-			//Untuk update
+			return new ResponseEntity("Not Found", HttpStatus.NOT_FOUND);
+
+		return new ResponseEntity(cst, HttpStatus.OK);
+	}
+
+	// Untuk Insert atau update customer
+	@PostMapping("/insert")
+	public ResponseEntity insertOrUpdateCustomer(@RequestBody CustomerDTO data) {
+		if (data == null)
+			return new ResponseEntity("Failed", HttpStatus.GONE);
+
+		TbCustomer tbCustomer = tbCustomerDao.findOne(data.getIdCustomer());
+
+		if (tbCustomer == null) {
+			// Untuk insert
+			TbCustomer cst = new TbCustomer();
+			cst.setNamaCustomer(data.getNamaCustomer());
+			cst.setTempatLahir(data.getTempatLahir());
+			cst.setTanggalLahir(data.getTanggalLahir());
+			cst.setPekerjaan(data.getPekerjaan());
+			cst.setAlamat(data.getAlamat());
+			cst.setCreatedBy("USER");
+			cst.setCreatedAt(new Date());
+
+			tbCustomerDao.save(cst);
+		} else {
+			// Untuk update
 			tbCustomer.setNamaCustomer(data.getNamaCustomer());
 			tbCustomer.setTempatLahir(data.getTempatLahir());
 			tbCustomer.setTanggalLahir(data.getTanggalLahir());
@@ -117,25 +109,23 @@ public class CustomerRestServices {
 			tbCustomer.setAlamat(data.getAlamat());
 			tbCustomer.setUpdatedBy("USER");
 			tbCustomer.setUpdatedAt(new Date());
-			
+
 			tbCustomerDao.save(tbCustomer);
 		}
-		
-		return new ResponseEntity("Success",HttpStatus.OK);
-    }
-	
-	//Untuk delete customer
+
+		return new ResponseEntity("Success", HttpStatus.OK);
+	}
+
+	// Untuk delete customer
 	@PostMapping("/delete")
-	public ResponseEntity deleteCustomer(@RequestBody Long idCustomer) 
-	{
+	public ResponseEntity deleteCustomer(@RequestBody Long idCustomer) {
 		TbCustomer tbCustomer = tbCustomerDao.findOne(idCustomer);
 
-		if (tbCustomer != null)
-		{
+		if (tbCustomer != null) {
 			tbCustomerDao.delete(tbCustomer);
 		} else
 			return new ResponseEntity(HttpStatus.GONE);
 
-		return new ResponseEntity("Success",HttpStatus.OK);
+		return new ResponseEntity("Success", HttpStatus.OK);
 	}
 }

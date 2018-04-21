@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.showroom.dao.HargaDTO;
 import com.showroom.dao.TbMotorDao;
+import com.showroom.dto.HargaDTO;
 import com.showroom.dto.MotorDTO;
 import com.showroom.model.TbHarga;
 import com.showroom.model.TbMotor;

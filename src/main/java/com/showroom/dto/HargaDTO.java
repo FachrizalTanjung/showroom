@@ -1,6 +1,4 @@
-package com.showroom.dao;
-
-import com.showroom.dto.MotorDTO;
+package com.showroom.dto;
 
 public class HargaDTO {
 	
