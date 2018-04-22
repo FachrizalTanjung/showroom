@@ -14,11 +14,11 @@
 				Booking Unit
 			</div>
 			<div class="card-body">
-				<form class="needs-validation" th:novalidate="novalidate" action="/insertPesan" method="POST">
+				<form class="needs-validation" th:novalidate="novalidate" th:object="${bookingDTO}" th:action="@{/insertPesan}" method="POST">
 
 					<div class="form-group">
 						<label for="idpesan">Tiket Pesan</label>
-						<input type="text" class="form-control" id="idpesan" placeholder="Tiket Pesan" th:required="required" />
+						<input type="text" class="form-control" th:field="*{tiketPesan}" placeholder="Tiket Pesan" th:required="required" />
 						<div class="invalid-feedback">
 							Tidak boleh kosong
 						</div>
@@ -26,7 +26,7 @@
 
 					<div class="form-group">
 						<label for="nama">Nama</label>
-						<input type="text" class="form-control" id="nama" placeholder="Nama" th:required="required" />
+						<input type="text" class="form-control" th:field="*{nama}" placeholder="Nama" th:required="required" />
 						<div class="invalid-feedback">
 							Tidak boleh kosong
 						</div>
@@ -34,7 +34,7 @@
 
 					<div class="form-group">
 						<label for="nomortelepon">Nomor Telepon</label>
-						<input type="text" class="form-control" id="nomortelepon" placeholder="Nomor Telepon" th:required="required" />
+						<input type="text" class="form-control" th:field="*{nomorTelepon}" placeholder="Nomor Telepon" th:required="required" />
 						<div class="invalid-feedback">
 							Tidak boleh kosong
 						</div>
@@ -42,7 +42,7 @@
 
 					<div class="form-group">
 						<label for="alamat">Alamat Lengkap</label>
-						<input type="text" class="form-control" id="alamat" placeholder="Alamat" th:required="required" />
+						<input type="text" class="form-control" th:field="*{alamat}" placeholder="Alamat" th:required="required" />
 						<div class="invalid-feedback">
 							Tidak boleh kosong
 						</div>
@@ -50,7 +50,7 @@
 
 					<div class="form-group">
 						<label for="isipesan">Isi Pesan</label>
-						<input type="text" class="form-control" id="isipesan" placeholder="Isi Pesan" th:required="required" />
+						<input type="text" class="form-control" th:field="*{isiPesan}" placeholder="Isi Pesan" th:required="required" />
 						<div class="invalid-feedback">
 							Tidak boleh kosong
 						</div>

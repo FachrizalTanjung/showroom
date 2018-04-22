@@ -16,6 +16,21 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`dbshowroom` /*!40100 DEFAULT CHARACTER 
 
 USE `dbshowroom`;
 
+/*Table structure for table `tb_booking` */
+
+DROP TABLE IF EXISTS `tb_booking`;
+
+CREATE TABLE `tb_booking` (
+  `tiket_pesan` varchar(10) NOT NULL,
+  `nama` varchar(30) default NULL,
+  `nomor_telepon` varchar(20) default NULL,
+  `alamat` varchar(50) default NULL,
+  `isi_pesan` varchar(160) default NULL,
+  PRIMARY KEY  (`tiket_pesan`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tb_booking` */
+
 /*Table structure for table `tb_customer` */
 
 DROP TABLE IF EXISTS `tb_customer`;
@@ -32,7 +47,7 @@ CREATE TABLE `tb_customer` (
   `updated_by` varchar(30) default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`id_customer`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_customer` */
 
@@ -159,9 +174,9 @@ CREATE TABLE `tb_transaksi` (
   KEY `id_sales` (`id_sales`),
   KEY `id_customer` (`id_customer`),
   KEY `id_motor` (`id_motor`),
+  CONSTRAINT `tb_transaksi_fk1` FOREIGN KEY (`id_motor`) REFERENCES `tb_motor` (`id_motor`),
   CONSTRAINT `tb_transaksi_fk2` FOREIGN KEY (`id_sales`) REFERENCES `tb_sales` (`id_sales`),
-  CONSTRAINT `tb_transaksi_fk3` FOREIGN KEY (`id_customer`) REFERENCES `tb_customer` (`id_customer`),
-  CONSTRAINT `tb_transaksi_fk1` FOREIGN KEY (`id_motor`) REFERENCES `tb_motor` (`id_motor`)
+  CONSTRAINT `tb_transaksi_fk3` FOREIGN KEY (`id_customer`) REFERENCES `tb_customer` (`id_customer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `tb_transaksi` */
