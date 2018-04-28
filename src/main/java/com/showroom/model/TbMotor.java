@@ -35,8 +35,8 @@ public class TbMotor implements java.io.Serializable {
 	@Column(name = "tipe_motor", nullable = false, length = 30)
 	private String tipeMotor;
 
-	@Column(name = "url_gambar")
-	private String urlGambar;
+	@Column(name = "gambar")
+	private String gambar;
 
 	@Column(name = "deskripsi_motor")
 	private String deskripsiMotor;
@@ -114,11 +114,11 @@ public class TbMotor implements java.io.Serializable {
 	}
 
 	public String getUrlGambar() {
-		return urlGambar;
+		return gambar;
 	}
 
 	public void setUrlGambar(String urlGambar) {
-		this.urlGambar = urlGambar;
+		this.gambar = urlGambar;
 	}
 
 	public String getDeskripsiMotor() {

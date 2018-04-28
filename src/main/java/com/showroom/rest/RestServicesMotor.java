@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.showroom.dao.TbMotorDao;
@@ -19,6 +21,7 @@ import com.showroom.dto.HargaDTO;
 import com.showroom.dto.MotorDTO;
 import com.showroom.model.TbHarga;
 import com.showroom.model.TbMotor;
+import com.showroom.pagination.PageableResponse;
 
 @RestController
 @RequestMapping("/rest/motor")
@@ -27,10 +30,50 @@ public class RestServicesMotor {
 	@Autowired
 	private TbMotorDao tbMotorDao;
 
+	/*
+	 * @GetMapping("/all") public ResponseEntity getAllMotor() {
+	 * 
+	 * List<MotorDTO> motorList = new ArrayList<MotorDTO>();
+	 * 
+	 * for (TbMotor tbMotor : tbMotorDao.findAll()) { MotorDTO mtr = new
+	 * MotorDTO();
+	 * 
+	 * // Set data di tabel ke dto mtr.setIdMotor(tbMotor.getIdMotor());
+	 * mtr.setJenisMotor(tbMotor.getJenisMotor());
+	 * mtr.setMerekMotor(tbMotor.getMerekMotor());
+	 * mtr.setTipeMotor(tbMotor.getTipeMotor());
+	 * mtr.setUrlGambar(tbMotor.getUrlGambar());
+	 * mtr.setDeskripsiMotor(tbMotor.getDeskripsiMotor());
+	 * mtr.setTransmisiMotor(tbMotor.getTransmisiMotor());
+	 * mtr.setCc(tbMotor.getCc()); mtr.setTahun(tbMotor.getTahun());
+	 * mtr.setWarnaMotor(tbMotor.getWarnaMotor());
+	 * mtr.setCreatedBy(tbMotor.getCreatedBy());
+	 * mtr.setCreatedAt(tbMotor.getCreatedAt());
+	 * mtr.setUpdatedBy(tbMotor.getUpdatedBy());
+	 * mtr.setUpdatedAt(tbMotor.getUpdatedAt());
+	 * 
+	 * HargaDTO hargaDTO = new HargaDTO();
+	 * hargaDTO.setIdMotor(tbMotor.getTbHarga().getIdMotor());
+	 * hargaDTO.setHargaOtr(tbMotor.getTbHarga().getHargaOtr());
+	 * hargaDTO.setDiskon(tbMotor.getTbHarga().getDiskon());
+	 * hargaDTO.setStok(tbMotor.getTbHarga().getStok());
+	 * hargaDTO.setHargaNetcash(tbMotor.getTbHarga().getHargaNetcash());
+	 * hargaDTO.setSimulasiKredit(tbMotor.getTbHarga().getSimulasiKredit());
+	 * 
+	 * mtr.setHargaDTO(hargaDTO);
+	 * 
+	 * motorList.add(mtr); }
+	 * 
+	 * return new ResponseEntity(motorList, HttpStatus.OK); }
+	 */
+
 	@GetMapping("/all")
-	public ResponseEntity getAllMotor() {
+	public @ResponseBody PageableResponse<MotorDTO> getAllMotor(
+			@RequestParam(name = "offset", required = false) Integer offset,
+			@RequestParam(name = "limit", required = false) Integer limit) {
 
 		List<MotorDTO> motorList = new ArrayList<MotorDTO>();
+		Long count = tbMotorDao.count();
 
 		for (TbMotor tbMotor : tbMotorDao.findAll()) {
 			MotorDTO mtr = new MotorDTO();
@@ -64,7 +107,11 @@ public class RestServicesMotor {
 			motorList.add(mtr);
 		}
 
-		return new ResponseEntity(motorList, HttpStatus.OK);
+		PageableResponse<MotorDTO> response = new PageableResponse<>();
+		response.setData(motorList);
+		response.setTotalRecords(count);
+
+		return response;
 	}
 
 	// Get Motor Menggunakan Id Motor
