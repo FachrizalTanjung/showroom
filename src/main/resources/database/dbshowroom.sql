@@ -92,7 +92,7 @@ CREATE TABLE `tb_motor` (
   `jenis_motor` varchar(20) NOT NULL COMMENT 'jenis dari motor(bebek, sport, matic)',
   `merek_motor` varchar(50) NOT NULL COMMENT 'merek motor honda',
   `tipe_motor` varchar(50) NOT NULL,
-  `url_gambar` varchar(255) default NULL COMMENT 'url untuk gambar motor',
+  `gambar` blob COMMENT 'url untuk gambar motor',
   `deskripsi_motor` varchar(255) default NULL COMMENT 'deskripsi dari motor',
   `transmisi_motor` varchar(10) NOT NULL COMMENT 'automatic atau manual',
   `cc` varchar(10) NOT NULL COMMENT 'jumlah cc motor',
@@ -107,7 +107,7 @@ CREATE TABLE `tb_motor` (
 
 /*Data for the table `tb_motor` */
 
-insert  into `tb_motor`(`id_motor`,`jenis_motor`,`merek_motor`,`tipe_motor`,`url_gambar`,`deskripsi_motor`,`transmisi_motor`,`cc`,`tahun`,`warna_motor`,`created_by`,`created_at`,`updated_by`,`updated_at`) values 
+insert  into `tb_motor`(`id_motor`,`jenis_motor`,`merek_motor`,`tipe_motor`,`gambar`,`deskripsi_motor`,`transmisi_motor`,`cc`,`tahun`,`warna_motor`,`created_by`,`created_at`,`updated_by`,`updated_at`) values 
 (3,'MATIC','HONDA','Honda BeAT Streat eSP',NULL,NULL,'AUTOMATIC','110','2017','PUTIH','USER','2018-03-30 17:46:22',NULL,NULL),
 (4,'MATIC','HONDA','Honda BeAT Sporty CW',NULL,NULL,'AUTOMATIC','110','2017','PINK','USER','2018-03-30 17:46:22',NULL,NULL),
 (5,'MATIC','HONDA','Honda BeAT Sporty CBS',NULL,NULL,'AUTOMATIC','110','2017','HITAM','USER','2018-03-30 17:46:22',NULL,NULL),
